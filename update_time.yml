@@ -1,0 +1,25 @@
+name: Actualizar hora cada 10 minutos
+
+on:
+  schedule:
+    - cron: '*/10 * * * *' # Cada 10 minutos
+
+jobs:
+  update-time:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Obtener la hora actual
+        run: |
+          echo "<!DOCTYPE html><html><body><h2>Hora actual:</h2><p>$(date '+%Y-%m-%d %H:%M:%S')</p></body></html>" > public/hora.html
+
+      - name: Commit y push cambios
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add public/hora.html
+          git commit -m "Actualizar hora $(date '+%Y-%m-%d %H:%M:%S')" || echo "Sin cambios"
+          git push
