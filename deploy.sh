@@ -20,8 +20,8 @@ if [ -f /etc/letsencrypt/live/dev6.cyberbunny.online/fullchain.pem ] && [ -f /et
   mkdir -p ./certs
 
   # Copiar los certificados generados a la ubicación esperada por tu aplicación
-  cp /etc/letsencrypt/live/dev6.cyberbunny.online/fullchain.pem ./certs/fullchain.pem
-  cp /etc/letsencrypt/live/dev6.cyberbunny.online/privkey.pem ./certs/privkey.pem
+  cp /etc/letsencrypt/live/dev6.cyberbunny.online/fullchain.pem/certs/fullchain.pem
+  cp /etc/letsencrypt/live/dev6.cyberbunny.online/privkey.pem/certs/privkey.pem
 
   # Cambiar permisos de los archivos de certificados
   chmod 600 ./certs/fullchain.pem
