@@ -21,13 +21,13 @@ jobs:
 
     - name: Add remote host to known_hosts
       run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-    - name: Copy files via SCP
-      env:
-        SSHPASS: ${{ secrets.SSH_PASSWORD }}
-      run: sshpass -e scp -r ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/root/examendiegofinal
+    # - name: Copy files via SCP
+    #   env:
+    #     SSHPASS: ${{ secrets.SSH_PASSWORD }}
+    #   run: sshpass -e scp -r ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/root/examendiegofinal
 
 
     - name: Execute command on VPS
       env:
         SSHPASS: ${{ secrets.SSH_PASSWORD }}
-      run: sshpass -e ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "pm2 stop mi-aplicacion && cd examendiegofinal && git pull && npm install && pm2 start mi-aplicacion &"
+      run: sshpass -e ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "pm2 stop mi-aplicacion && cd examendiegofinal && git pull && npm install && pm2 start express-app &"
