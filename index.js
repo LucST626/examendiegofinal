@@ -14,7 +14,7 @@ const useHttps = process.env.USE_HTTPS === 'true';
 app.use(cors());
 
 
-app.use('/api', routes);
+app.use('/', routes);
 
 if (useHttps) {
   const options = {
